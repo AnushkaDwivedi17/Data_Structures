@@ -61,8 +61,7 @@ void deleteatbegin(){
     delete(t);
 }
 
-// to delete any node by its value
-void deletebyvalue(Node* &head, int val){
+void deletebyvalue(int val){
     Node* temp=head;
     while(temp->next->data!=val)
         temp=temp->next;
@@ -70,7 +69,34 @@ void deletebyvalue(Node* &head, int val){
     temp->next = temp->next->next;
     delete todelete;
 }
-    
+
+void deleteatend(){
+    Node* temp = head;
+    while(temp->next->next != NULL){
+        temp = temp->next;
+    }
+    Node* t = temp->next;
+    temp->next = NULL;
+    delete t;
+}
+
+void deleteatpos(int pos){
+    if (pos==0){
+        deleteatbegin();
+    }
+    else{
+     Node* temp = head;
+     int index = 0;
+     while(index != pos-1 and temp != NULL){
+         temp = temp -> next;
+         index++;
+     }
+     Node *t = temp->next;
+     temp->next = temp->next->next;
+     delete t;
+    }
+}
+
 void display(Node* head){
     Node* t = head;
     while(t != NULL){
@@ -84,8 +110,12 @@ int main(){
     insertnode(a);
     insertnodeatbegin(b);
     insertnodeatbegin(c);
-    insertatany(6,4);
+    insertatany(6,c);
     insertatpos(7,2);
     deleteatbegin();
+    deleteatend();
+    display(head);
+    deleteatpos(0);
+    cout<<endl;
     display(head);
 }
