@@ -60,6 +60,17 @@ void deleteatbegin(){
     head = head->next;
     delete(t);
 }
+
+// to delete any node by its value
+void deletebyvalue(Node* &head, int val){
+    Node* temp=head;
+    while(temp->next->data!=val)
+        temp=temp->next;
+   Node* todelete = temp->next;
+    temp->next = temp->next->next;
+    delete todelete;
+}
+    
 void display(Node* head){
     Node* t = head;
     while(t != NULL){
